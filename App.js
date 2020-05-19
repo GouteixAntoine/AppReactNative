@@ -1,10 +1,27 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, FlatList, Alert, TabBarIOS} from 'react-native'
+
+import PageInfo from './components/PageInfo';
+import Home from './components/Home';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Accueil" component={Home}/>
+            <Stack.Screen name="Information" component={PageInfo}/>
+          </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }
@@ -12,8 +29,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 60,
   },
 });
